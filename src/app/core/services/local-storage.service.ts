@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { VERSION } from '../constants/constants';
-import { Food } from '../domain/food';
+import { VERSION } from '../../constants/constants';
+import { Food } from '../models/food';
 
 @Injectable({
   providedIn: 'root'
