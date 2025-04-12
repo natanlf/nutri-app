@@ -10,5 +10,10 @@ import { Food } from '../../../core/models/food';
 export class MealComponent {
 
   @Input() foods!: Food[];
+  foodsInEachMeal: any[] = [];
+
+  addFood() {
+    this.foodsInEachMeal.push({id: new Date().getTime()});
+  }
 
 }

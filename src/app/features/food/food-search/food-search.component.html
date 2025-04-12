@@ -1,24 +1,22 @@
-<mat-card appearance="outlined">
-    <mat-card-content>
-        <mat-form-field style="width: 100%;">
-            <input type="text" placeholder="Search food" matInput 
-              [formControl]="searchControl" 
-              [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete" 
-              [displayWith]="displayFn" 
-              (optionSelected)="onFoodSelected($event.option.value)">
-              <mat-option *ngFor="let option of filteredOptions$ | async" [value]="option">
-                {{ option.name }}
-              </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-    </mat-card-content>
-</mat-card>
+
+<mat-form-field style="width: 100%;">
+    <input type="text" placeholder="Search food" matInput 
+        [formControl]="searchControl" 
+        [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" 
+        [displayWith]="displayFn" 
+        (optionSelected)="onFoodSelected($event.option.value)">
+        <mat-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+        {{ option.name }}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>
+
 
 
 <!-- Exibir o alimento selecionado -->
-<div *ngIf="selectedFood">
+<!--<div *ngIf="selectedFood">
   <h3>Selecionado:</h3>
   <p><strong>Nome:</strong> {{ selectedFood.name }}</p>
   <p><strong>Calorias:</strong> {{ selectedFood.kcal }} kcal</p>
-</div>
+</div>-->
