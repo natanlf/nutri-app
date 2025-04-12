@@ -16,6 +16,7 @@ export class FoodsComponent implements OnInit {
   private readonly foodService: FoodService;
   private readonly localStorageService: LocalStorageService;
   foods!: Food[];
+  meals:any = [];
 
   constructor(foodService: FoodService, localStorageService: LocalStorageService) {
     this.foodService = foodService;
@@ -52,6 +53,10 @@ export class FoodsComponent implements OnInit {
   saveFoodsAndVersionInLocalStorage() {
     this.localStorageService.saveFoods(this.foods);
     this.localStorageService.saveVersion();
+  }
+
+  addMeal() {
+    this.meals.push({id: new Date().getTime()});
   }
   
 }

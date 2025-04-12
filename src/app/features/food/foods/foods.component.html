@@ -1,2 +1,8 @@
-<app-food-search [foods]="foods"></app-food-search>
+<div class="example-button-row">
+  <button (click)="addMeal()" mat-button>Add meal</button>
+</div>
+
+@for(item of meals; track item.id) {
+  <app-meal [foods]="foods"></app-meal>
+}
   
