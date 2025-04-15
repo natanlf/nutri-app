@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Food } from '../../../core/models/food';
 import { FormControl } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
@@ -12,7 +12,7 @@ import { map, Observable, startWith } from 'rxjs';
 export class FoodSearchComponent implements OnInit {
 
   @Input() foods!: Food[];
-  selectedFood?: Food; // ✅ armazenar comida selecionada
+  @Output() selectedFood = new EventEmitter<Food>();
 
   filteredOptions$!: Observable<Food[]>;
   searchControl = new FormControl('');
@@ -37,8 +37,8 @@ export class FoodSearchComponent implements OnInit {
   }  
 
   onFoodSelected(food: Food) {
-    this.selectedFood = food;
     console.log('Selecionado:', food);
+    this.selectedFood.emit(food);
   }
 
 

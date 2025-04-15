@@ -1,12 +1,10 @@
 <mat-card appearance="outlined">
     <mat-card-content>
-
-        <form class="example-form">
-            <mat-form-field class="example-full-width">
-              <mat-label>Meal name</mat-label>
-              <input type="text" matInput placeholder="Ex. 200">
-            </mat-form-field>
-        </form>
+        
+        <mat-form-field class="example-full-width">
+            <mat-label>Meal name</mat-label>
+            <input [(ngModel)]="meal" required type="text" matInput placeholder="Ex. 200">
+        </mat-form-field>
 
         <div class="example-button-row">
             <button (click)="addFood()" mat-button>Add food</button>
@@ -15,7 +13,7 @@
         @for(item of foodsInEachMeal; track item.id) {
             <mat-card class="food" appearance="outlined">
                 <mat-card-content>
-                    <app-food-search [foods]="foods"></app-food-search>
+                    <app-food-search [foods]="foods" (selectedFood)="onSelectedFood($event)"></app-food-search>
 
                     <form class="example-form">
                         <mat-form-field class="example-full-width">

@@ -11,9 +11,14 @@ export class MealComponent {
 
   @Input() foods!: Food[];
   foodsInEachMeal: any[] = [];
+  meal!: string;
 
   addFood() {
     this.foodsInEachMeal.push({id: new Date().getTime()});
+  }
+
+  onSelectedFood(selectedFood: Food) {
+    console.log(selectedFood);
   }
 
 }
