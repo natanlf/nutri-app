@@ -14,13 +14,7 @@
             <mat-card class="food" appearance="outlined">
                 <mat-card-content>
                     <app-food-search [foods]="foods" (selectedFood)="onSelectedFood($event)"></app-food-search>
-
-                    <form class="example-form">
-                        <mat-form-field class="example-full-width">
-                        <mat-label>Quantity</mat-label>
-                        <input type="number" matInput placeholder="Ex. 200">
-                        </mat-form-field>
-                    </form>
+                    <app-food-form [food]="selectedFood"></app-food-form>
                 </mat-card-content>
             </mat-card>           
         }

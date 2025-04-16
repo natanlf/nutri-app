@@ -12,13 +12,15 @@ export class MealComponent {
   @Input() foods!: Food[];
   foodsInEachMeal: any[] = [];
   meal!: string;
+  selectedFood!: Food;
 
   addFood() {
     this.foodsInEachMeal.push({id: new Date().getTime()});
   }
 
   onSelectedFood(selectedFood: Food) {
-    console.log(selectedFood);
+    this.selectedFood = selectedFood;
+    console.log(this.selectedFood);
   }
 
 }

@@ -7,13 +7,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../../core/angular-material/angular-material.module';
 import { FoodSearchComponent } from './food-search/food-search.component';
 import { MealComponent } from './meal/meal.component';
+import { FoodFormComponent } from './food-form/food-form.component';
 
 
 @NgModule({
   declarations: [
     FoodsComponent,
     FoodSearchComponent,
-    MealComponent
+    MealComponent,
+    FoodFormComponent
   ],
   imports: [
     FoodsRoutingModule,
