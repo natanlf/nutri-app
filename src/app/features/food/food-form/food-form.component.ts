@@ -1,6 +1,9 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Food } from '../../../core/models/food';
+import { Food, MyFood } from '../../../core/models/food';
+import {UUID} from 'uuid-generator-ts';
+import { Store } from '@ngrx/store';
+import { updateOrAddFood } from '../../../store/actions/foods.action';
 
 @Component({
   selector: 'app-food-form',
@@ -18,6 +21,8 @@ export class FoodFormComponent implements OnInit, OnChanges {
     this.createFoodForm();
   }
 
+  constructor(private store: Store) {}
+
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['food'].currentValue) {
       this.selectedFood = changes['food'].currentValue;
@@ -32,14 +37,7 @@ export class FoodFormComponent implements OnInit, OnChanges {
 
   private setFoodForm(food: Food): void {
     this.foodForm.patchValue({
-      name: food.name,
-      fat: food.fat,
-      fiber: food.fiber,
-      kcal: food.kcal,
-      origin: food.origin,
-      protein: food.protein,
-      sodium: food.sodium,
-      unity: food.unity
+      name: food.name
     })
   }
 
@@ -47,18 +45,28 @@ export class FoodFormComponent implements OnInit, OnChanges {
     this.foodForm = new FormGroup({
       'name': new FormControl<string>(''),
       'quantity': new FormControl<number>({ value: 0, disabled: true }, [Validators.required]),
-      'fat': new FormControl<number>(0, Validators.required),
-      'fiber': new FormControl<number>(0, Validators.required),
-      'kcal': new FormControl<number>(0, Validators.required),
-      'origin': new FormControl<string>('', Validators.required),
-      'protein': new FormControl<number>(0, Validators.required),
-      'sodium': new FormControl<number>(0, Validators.required),
-      'unity': new FormControl<string>('', Validators.required)
+      'id': new FormControl<string>(new UUID().getDashFreeUUID())
     });
   }
 
   enableQuantity() {
     this.quantity.enable();
+  }
+
+  updateQuantity(event: KeyboardEvent): void {
+    let food: MyFood = {
+      id: this.id.value,
+      name: this.name.value,
+      quantity: this.quantity.value,
+      selectedFood: this.selectedFood
+    };
+    
+    console.log(food)
+    this.addToFood(food);
+  }
+
+  addToFood(myFood: MyFood) {
+    this.store.dispatch(updateOrAddFood( { food: myFood } ))
   }
 
   onSubmit() {
@@ -67,11 +75,5 @@ export class FoodFormComponent implements OnInit, OnChanges {
 
   get name() { return this.foodForm.get('name')! }
   get quantity() { return this.foodForm.get('quantity')! }
-  get fat() { return this.foodForm.get('fat')! }
-  get fiber() { return this.foodForm.get('fiber')! }
-  get kcal() { return this.foodForm.get('kcal')! }
-  get origin() { return this.foodForm.get('origin')! }
-  get protein() { return this.foodForm.get('protein')! }
-  get sodium() { return this.foodForm.get('sodium')! }
-  get unity() { return this.foodForm.get('unity')! }
+  get id() { return this.foodForm.get('id')! }
 }

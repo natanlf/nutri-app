@@ -10,4 +10,11 @@ export class Food {
     unity!: 'G' | 'ML' | string; // ajuste conforme as unidades que for usar
     sodium!: number;
 }
+
+export class MyFood {
+    id!: number;
+    name!: string;
+    quantity!: number;
+    selectedFood!: Food;
+}
   
