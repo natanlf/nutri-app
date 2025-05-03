@@ -44,7 +44,7 @@ export class FoodFormComponent implements OnInit, OnChanges {
   createFoodForm(): void {
     this.foodForm = new FormGroup({
       'name': new FormControl<string>(''),
-      'quantity': new FormControl<number>({ value: 0, disabled: true }, [Validators.required]),
+      'quantity': new FormControl<number>({ value: 0, disabled: true }, [Validators.required, Validators.min(1)]),
       'id': new FormControl<string>(new UUID().getDashFreeUUID())
     });
   }

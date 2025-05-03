@@ -6,6 +6,17 @@
             
         </mat-form-field>
 
+
+        <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert">
+            <mat-error data-testid="required-quantity" *ngIf="quantity.errors?.['required']">
+                Quantity is necessary
+            </mat-error>
+            <mat-error data-testid="regex-quantity-error" *ngIf="quantity.errors?.['pattern']">
+                Quantity is invalid
+            </mat-error>
+        </div>
+
+
         {{selectedFood!.unity}}
     </div>
 </form>

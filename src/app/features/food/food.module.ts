@@ -8,6 +8,7 @@ import { AngularMaterialModule } from '../../core/angular-material/angular-mater
 import { FoodSearchComponent } from './food-search/food-search.component';
 import { MealComponent } from './meal/meal.component';
 import { FoodFormComponent } from './food-form/food-form.component';
+import { FoodFooterComponent } from './food-footer/food-footer.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FoodFormComponent } from './food-form/food-form.component';
     FoodsComponent,
     FoodSearchComponent,
     MealComponent,
-    FoodFormComponent
+    FoodFormComponent,
+    FoodFooterComponent
   ],
   imports: [
     FoodsRoutingModule,
