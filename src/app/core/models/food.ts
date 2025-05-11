@@ -15,6 +15,7 @@ export class MyFood {
     id!: number;
     name!: string;
     quantity!: number;
+    meal!: string;
     selectedFood!: Food;
 }
   

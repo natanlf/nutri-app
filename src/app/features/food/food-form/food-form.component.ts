@@ -14,6 +14,7 @@ import { updateOrAddFood } from '../../../store/actions/foods.action';
 export class FoodFormComponent implements OnInit, OnChanges {
   
   @Input() food!: Food;
+  @Input() meal!: string;
   foodForm!: FormGroup;
   selectedFood: any = {};
 
@@ -58,6 +59,7 @@ export class FoodFormComponent implements OnInit, OnChanges {
       id: this.id.value,
       name: this.name.value,
       quantity: this.quantity.value,
+      meal: this.meal,
       selectedFood: this.selectedFood
     };
     

@@ -14,7 +14,7 @@
             <mat-card class="food" appearance="outlined">
                 <mat-card-content>
                     <app-food-search [foods]="foods" (selectedFood)="onSelectedFood($event)"></app-food-search>
-                    <app-food-form [food]="selectedFood"></app-food-form>
+                    <app-food-form [food]="selectedFood" [meal]="meal"></app-food-form>
                 </mat-card-content>
             </mat-card>           
         }
