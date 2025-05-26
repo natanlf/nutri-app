@@ -4,6 +4,7 @@ import { Food, MyFood } from '../../../core/models/food';
 import {UUID} from 'uuid-generator-ts';
 import { Store } from '@ngrx/store';
 import { updateOrAddFood } from '../../../store/actions/foods.action';
+import { MacrosService } from '../../../core/services/macros.service';
 
 @Component({
   selector: 'app-food-form',
@@ -22,7 +23,8 @@ export class FoodFormComponent implements OnInit, OnChanges {
     this.createFoodForm();
   }
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private macrosService: MacrosService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['food'].currentValue) {
@@ -55,11 +57,21 @@ export class FoodFormComponent implements OnInit, OnChanges {
   }
 
   updateQuantity(event: KeyboardEvent): void {
+    //TODO -> calculate macros here
+    let calculatedMacros = this.macrosService.calculateMacros(this.selectedFood, this.quantity.value)
     let food: MyFood = {
       id: this.id.value,
       name: this.name.value,
       quantity: this.quantity.value,
       meal: this.meal,
+      origin: calculatedMacros.origin,
+      fiber: calculatedMacros.fiber,
+      carb: calculatedMacros.carb,
+      kcal: calculatedMacros.kcal,
+      protein: calculatedMacros.protein,
+      fat: calculatedMacros.fat,
+      unity: calculatedMacros.unity,
+      sodium: calculatedMacros.sodium,  
       selectedFood: this.selectedFood
     };
     

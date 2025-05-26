@@ -11,10 +11,8 @@ export class Food {
     sodium!: number;
 }
 
-export class MyFood {
+export class MyFood extends Food {
     id!: number;
-    name!: string;
-    quantity!: number;
     meal!: string;
     selectedFood!: Food;
 }
